@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    background: linear-gradient(125deg, orange, purple);
+    min-height: 100vh;
+    font-family: "Ubuntu", sans-serif;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .header .box {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 20px;
+    color: #1e7fb0;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  .header .box hr {
+    border-top: 2px solid #a2a2a2;
+    margin: 3px;
+  }
+  .header .box input {
+    width: 100%;
+    margin-bottom: 3px;
+    height: 50px;
+    padding: 3px;
+    resize: vertical;
+  }
+  .header .box .qrcode {
+    padding: 3px;
+  }
+  .header .box .sqrcode {
+    padding: 3px;
+    margin-left: 15px;
+  }
+  .header .box button {
+    width: 100%;
+    height: 35px;
+    background: #1e7fb0;
+    font-weight: 700;
+    font-family: "Ubuntu", sans-serif;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
