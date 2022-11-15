@@ -1,10 +1,4 @@
-- 👋 Hi, I’m @Starx-Quantum
-- 👀 I’m interested in Technology and Blockchain Development...
-- 🌱 I’m currently learning C programming ...
-- 💞️ I’m looking to collaborate on Code ...
--
-
-<!---
-Starx-Quantum/Starx-Quantum is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+CREATE TABLE Aman pandey (phrase TEXT);
+INSERT INTO Aman pandey VALUES ("Hello,pandey!");
+INSERT INTO Aman Pandey VALUES ("Aman pandey, King");
+SELECT COUNT(*) FROM Aman pandey;
