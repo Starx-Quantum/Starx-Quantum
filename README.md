@@ -17,7 +17,7 @@
 • 🔭 I’m currently working on <b>something cool!</b> <br/>
 • 👯 I’m looking to collaborate on <b>cool project.</b><br/>
 • 💬 Ask me about <b>Full Stack</b>.<br/>
-• 📫 Reach me out <a href="https://www.instagram.com/luciferxxms"><b>@lucifer</b></a><br/>
+• 📫 Reach me out <a href="https://www.instagram.com/luciferxxms"><b>@Starx-Quantum</b></a><br/>
 </span>
 
 <br />
