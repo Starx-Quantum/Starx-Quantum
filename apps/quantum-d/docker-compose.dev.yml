@@ -1,0 +1,36 @@
+version: "3"
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - ${DB_PORT}:1433
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: Y
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - /opt/mssql-tools/bin/sqlcmd
+        - -S
+        - localhost
+        - -U
+        - ${DB_USER}
+        - -P
+        - ${DB_PASSWORD}
+        - -Q
+        - SELECT 1
+        - -b
+        - -o
+        - /dev/null
+      timeout: 5s
+      interval: 10s
+      retries: 10
+      start_period: 10s
+volumes:
+  postgres: ~
+  mssql: ~
