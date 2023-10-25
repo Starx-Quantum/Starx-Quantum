@@ -1,0 +1,66 @@
+version: "3"
+services:
+  server:
+    build:
+      context: .
+      args:
+        NPM_LOG_LEVEL: notice
+    ports:
+      - ${PORT}:3000
+    environment:
+      BCRYPT_SALT: ${BCRYPT_SALT}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
+        _PASSWORD};TrustServerCertificate=true`"
+    depends_on:
+      - migrate
+  migrate:
+    build:
+      context: .
+      args:
+        NPM_LOG_LEVEL: notice
+    command: npm run db:init
+    working_dir: /app/server
+    environment:
+      BCRYPT_SALT: ${BCRYPT_SALT}
+      DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
+        _PASSWORD};TrustServerCertificate=true`"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - ${DB_PORT}:1433
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: Y
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD
+        - /opt/mssql-tools/bin/sqlcmd
+        - -S
+        - localhost
+        - -U
+        - ${DB_USER}
+        - -P
+        - ${DB_PASSWORD}
+        - -Q
+        - SELECT 1
+        - -b
+        - -o
+        - /dev/null
+      timeout: 5s
+      interval: 10s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+volumes:
+  postgres: ~
+  mssql: ~
